@@ -18,6 +18,7 @@
     int currentIndex;
 }
 @property(nonatomic,assign) CGRect currentSlideFrame;
+@property (weak, nonatomic) IBOutlet UIView *viewHolder;
 
 @end
 
@@ -25,6 +26,7 @@
 
 - (void)viewDidLoad {
     
+    [super viewDidLoad];
     wideSlideSize = CGSizeMake(self.view.frame.size.width, 100);
     normalSlideSize_big = CGSizeMake(self.view.frame.size.width, 400);
     normalSlideSize_small = CGSizeMake(self.view.frame.size.width/2, 200);
@@ -34,7 +36,9 @@
     currentIndex = 0;
     
     [self prepareSlides];
-    [super viewDidLoad];
+    self.viewHolder.frame = CGRectMake(0,0,self.currentSlideFrame.size.width,self.currentSlideFrame.size.height + 50);
+    self.viewHolder.center = self.view.center;
+    
     // Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -63,14 +67,14 @@
     
     if (((Slide*)slideArray[indexValue]).slideType == WIDE) {
         Slide* sObj = (Slide*)slideArray[indexValue];
-        [self.view addSubview:[self createWideSlide:[UIImage imageNamed:sObj.imageName]]];
+        [self.viewHolder addSubview:[self createWideSlide:[UIImage imageNamed:sObj.imageName]]];
     }else if (((Slide*)slideArray[indexValue]).slideType == NORMAL &&
              [self isNextSlideAvailble:indexValue + 1]  &&
              ((Slide*)slideArray[indexValue + 1]).slideType == NORMAL) {
         
         Slide* sObj_1 = (Slide*)slideArray[indexValue];
         Slide* sObj_2 = (Slide*)slideArray[indexValue + 1];
-        [self.view addSubview:[self createSplitSlide:[UIImage imageNamed:sObj_1.imageName]
+        [self.viewHolder addSubview:[self createSplitSlide:[UIImage imageNamed:sObj_1.imageName]
                                               image2:[UIImage imageNamed:sObj_2.imageName]]];
         
         currentIndex = currentIndex + 1;
@@ -79,11 +83,11 @@
              ((Slide*)slideArray[indexValue + 1]).slideType == WIDE) {
         
         Slide* sObj_1 = (Slide*)slideArray[indexValue];
-        [self.view addSubview:[self createNormalSlide:[UIImage imageNamed:sObj_1.imageName]]];
+        [self.viewHolder addSubview:[self createNormalSlide:[UIImage imageNamed:sObj_1.imageName]]];
     }else if (((Slide*)slideArray[indexValue]).slideType == NORMAL) {
         
         Slide* sObj = (Slide*)slideArray[indexValue];
-        [self.view addSubview:[self createNormalSlide:[UIImage imageNamed:sObj.imageName]]];
+        [self.viewHolder addSubview:[self createNormalSlide:[UIImage imageNamed:sObj.imageName]]];
         
     }
     
@@ -121,7 +125,7 @@
     
     self.currentSlideFrame = CGRectMake(self.currentSlideFrame.origin.x,
                                         (self.currentSlideFrame.origin.y + normalSlideSize_big.height),
-                                        wideSlideSize.width, wideSlideSize.height);
+                                        normalSlideSize_big.width, normalSlideSize_big.height);
     
     return imgView;
 }
@@ -160,20 +164,20 @@
     slide_1.slideType = NORMAL;
     [mArray addObject:slide_1];
     
-    Slide* slide_2 = [[Slide alloc] init];
-    slide_2.imageName = @"image_2";
-    slide_2.slideType = NORMAL;
-    [mArray addObject:slide_2];
+//    Slide* slide_2 = [[Slide alloc] init];
+//    slide_2.imageName = @"image_2";
+//    slide_2.slideType = NORMAL;
+//    [mArray addObject:slide_2];
     
-    Slide* slide_3 = [[Slide alloc] init];
-    slide_3.imageName = @"image_3";
-    slide_3.slideType = NORMAL;
-    [mArray addObject:slide_3];
-    
-    Slide* slide_4 = [[Slide alloc] init];
-    slide_4.imageName = @"image_4";
-    slide_4.slideType = WIDE;
-    [mArray addObject:slide_4];
+//    Slide* slide_3 = [[Slide alloc] init];
+//    slide_3.imageName = @"image_3";
+//    slide_3.slideType = NORMAL;
+//    [mArray addObject:slide_3];
+//
+//    Slide* slide_4 = [[Slide alloc] init];
+//    slide_4.imageName = @"image_4";
+//    slide_4.slideType = WIDE;
+//    [mArray addObject:slide_4];
     
     return mArray;
 }
