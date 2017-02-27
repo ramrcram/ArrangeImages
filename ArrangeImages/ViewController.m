@@ -37,7 +37,7 @@
     
     [self prepareSlides];
     self.viewHolder.frame = CGRectMake(0,0,self.currentSlideFrame.size.width,self.currentSlideFrame.size.height + 50);
-    self.viewHolder.center = self.view.center;
+//    self.viewHolder.center = self.view.center;
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -164,20 +164,35 @@
     slide_1.slideType = NORMAL;
     [mArray addObject:slide_1];
     
-//    Slide* slide_2 = [[Slide alloc] init];
-//    slide_2.imageName = @"image_2";
-//    slide_2.slideType = NORMAL;
-//    [mArray addObject:slide_2];
+    Slide* slide_2 = [[Slide alloc] init];
+    slide_2.imageName = @"image_2";
+    slide_2.slideType = NORMAL;
+    [mArray addObject:slide_2];
     
-//    Slide* slide_3 = [[Slide alloc] init];
-//    slide_3.imageName = @"image_3";
-//    slide_3.slideType = NORMAL;
-//    [mArray addObject:slide_3];
-//
-//    Slide* slide_4 = [[Slide alloc] init];
-//    slide_4.imageName = @"image_4";
-//    slide_4.slideType = WIDE;
-//    [mArray addObject:slide_4];
+    Slide* slide_3 = [[Slide alloc] init];
+    slide_3.imageName = @"image_3";
+    slide_3.slideType = NORMAL;
+    [mArray addObject:slide_3];
+
+    Slide* slide_4 = [[Slide alloc] init];
+    slide_4.imageName = @"image_4";
+    slide_4.slideType = WIDE;
+    [mArray addObject:slide_4];
+    
+    Slide* slide_5 = [[Slide alloc] init];
+    slide_5.imageName = @"image_5";
+    slide_5.slideType = WIDE;
+    [mArray addObject:slide_5];
+    
+    Slide* slide_6 = [[Slide alloc] init];
+    slide_6.imageName = @"image_6";
+    slide_6.slideType = WIDE;
+    [mArray addObject:slide_6];
+    
+    Slide* slide_7 = [[Slide alloc] init];
+    slide_7.imageName = @"image_7";
+    slide_7.slideType = WIDE;
+    [mArray addObject:slide_7];
     
     return mArray;
 }
